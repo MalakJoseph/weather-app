@@ -20,21 +20,21 @@ hbs.registerPartials(partialsPath);
 // Setup static directory to serve
 app.use(express.static(publicPath));
 
-app.get("", (req, res) => {
+app.get("", (_, res) => {
   res.render("index", {
     title: "Weather",
     name: "Malak Joseph",
   });
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", (_, res) => {
   res.render("about", {
     title: "About Me",
     name: "Malak Joseph",
   });
 });
 
-app.get("/help", (req, res) => {
+app.get("/help", (_, res) => {
   res.render("help", {
     title: "Help Message",
     helpText: "This is some helpful text.",
@@ -70,7 +70,7 @@ app.get("/weather", (req, res) => {
   );
 });
 
-app.get("/help/*", (req, res) => {
+app.get("/help/*", (_, res) => {
   res.render("404", {
     title: "404",
     errorMessage: "Help article not found.",
@@ -79,7 +79,7 @@ app.get("/help/*", (req, res) => {
 });
 
 // Have to come last because of ordering
-app.get("*", (req, res) => {
+app.get("*", (_, res) => {
   res.render("404", {
     title: "404",
     errorMessage: "Page not found.",
@@ -88,5 +88,5 @@ app.get("*", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is up on port ${port}.`);
+  console.log(`Server is up on http://localhost:${port}`);
 });
